@@ -12,18 +12,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
 
     <script type="text/babel">
+
        class Greeting extends React.Component {
+         constructor(props){
+           super(props);
+           this.state = {
+             number: 1
+           }
+         }
+
          render() {
            return (
              <div>
                <h1>Hello {this.props.name}!</h1>
+               <h2> Current program: {this.props.label}</h2>
+               <p>Current Week: {this.state.number}</p>
+               <p>Today's Date: {this.props.date.toLocaleDateString()}</p>
              </div>
            );
          }
        }
+
+       const info = {
+         date: new Date()
+       }
+
+       Greeting.defaultProps = {
+         label: "Web Developer Track"
+       }
  
        ReactDOM.render(
-         <Greeting name="Bloc Student"/>, document.getElementById('app')
+         <Greeting
+           name="Bloc Student"
+           date={info.date}/>, document.getElementById('app')
        );
     </script>
 
